@@ -31,8 +31,8 @@ public class KeyAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-//        return availableKeys.size();
-        return 10;
+        return availableKeys.size();
+        
     }
 
     public void setData(List<AvailableKey> availableKeys1){
