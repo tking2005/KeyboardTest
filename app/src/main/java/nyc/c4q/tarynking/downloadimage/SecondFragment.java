@@ -8,30 +8,37 @@ import android.widget.ImageView;
  * Created by tarynking on 1/11/17.
  */
 
-public class SecondFragment {
+public class SecondFragment extends AppCompatActivity {
 
-    private ImageView keyImageIv;
+    private ImageView imageView;
+    private String urlKey;
+    private int countOnBackPressed = 0;
 
 
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_second, container, false);
-//    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
 
-//    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        keyImageIv = (ImageView) view.findViewById(R.id.frag_key_image;
-//
-//
-//        Bundle extras = getArguments();
-//        String id = extras.getString("POST_ID");
-//
-//
-//        keyImageIv.setImageResource();
-//
+        imageView= (ImageView) findViewById(R.id.frag_key_image);
+
+        urlKey = getIntent().getStringExtra("keyString");
+
+        Picasso.with(this)
+                .load("http://jsjrobotics.nyc"+ urlKey)
+                .into(imageView);
+
     }
 
+
+
+    public void onBackPressed() {
+        if (countOnBackPressed ==0){
+        Toast.makeText(getBaseContext(), "Press once more to see list", Toast.LENGTH_SHORT).show();
+        countOnBackPressed++;
+        }else
+
+            super.onBackPressed();
+        }
 }
 
